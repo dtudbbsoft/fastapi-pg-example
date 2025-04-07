@@ -1,0 +1,11 @@
+**/__pycache__/
+
+.idea/
+# dotenv environment variables file
+.env
+.env.test
+.env.development
+.env.stagigng
+.env.production
+
+**.DS_STORE
