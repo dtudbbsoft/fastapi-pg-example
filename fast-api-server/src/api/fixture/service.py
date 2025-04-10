@@ -3,14 +3,12 @@ from fast_api_db import get_db_session
 from typing import Annotated
 from fastapi import Depends
 
-from src.api.utils.contracts import PaginationContract
-from src.api.utils.dao import IRepository
-from src.api.utils.services import ExternalServiceConnector
+from src.utils.contracts import PaginationContract
+from src.utils.dao import IRepository
 from src.schemas import Pagination, Id, AcknowledgeMessage, DAOGetAllParams, IdName
 
 from src.api.fixture.schema import (
-    Fixture, FixtureCreate, FixtureUpdate, FixtureWithNestedFields, FixtureProperties, CSVFixture,
-    FixtureSearchQuery, ExternalFixture,
+    Fixture, FixtureCreate, FixtureUpdate, FixtureProperties, ExternalFixture, FixtureSearchQuery
 )
 
 EXTERNAL_TABLE_NAME = "fixture"
@@ -21,7 +19,7 @@ class FixtureService(ExternalServiceConnector[ExternalFixture, Fixture]):
         super().__init__(EXTERNAL_TABLE_NAME)
 
         self.fixture_dao = FixtureDAO(db_session)
-        self.workflow_service: ExternalService = ExternalService()
+        self.external_service: ExternalService = ExternalService()
 
     @property
     def repository(self) -> IRepository:

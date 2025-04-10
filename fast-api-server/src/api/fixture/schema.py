@@ -10,7 +10,7 @@ from src.utils import PydanticModelMeta
 
 
 class ExternalFixture(BaseModel):
-    """Bubble Geo model"""
+    """External Fixture model"""
 
     id: Optional[str] = Field(None, alias="_id")
     modified_date: Optional[str] = Field(None, alias="Modified Date")

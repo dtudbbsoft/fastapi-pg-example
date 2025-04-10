@@ -6,7 +6,7 @@ from src.schemas import Pagination
 from src.api.fixture.schema import ExternalFixture, Fixture
 
 
-def bubble_geo_to_geo(model: ExternalFixture) -> Fixture:
+def external_fixture_to_fixture(model: ExternalFixture) -> Fixture:
     model = cast(dict, model)
 
     return Fixture(
@@ -21,7 +21,7 @@ def bubble_geo_to_geo(model: ExternalFixture) -> Fixture:
     )
 
 
-def geo_to_bubble_geo(model: Fixture) -> ExternalFixture:
+def fixture_to_external_fixture(model: Fixture) -> ExternalFixture:
     return ExternalFixture(
         name=model.name,
         fixture_url=model.scheduleUrl,
@@ -30,7 +30,7 @@ def geo_to_bubble_geo(model: Fixture) -> ExternalFixture:
     )
 
 
-def pagination_bubble_geo_to_pagination_ge(
+def pagination_external_fixture_to_pagination_ge(
     model: PaginationContract[ExternalFixture],
 ) -> Pagination[Fixture]:
-    return convert_to_entities(model, bubble_geo_to_geo)
+    return convert_to_entities(model, external_fixture_to_fixture)
