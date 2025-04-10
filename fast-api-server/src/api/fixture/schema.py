@@ -4,9 +4,8 @@ from fastapi import HTTPException
 from pydantic import BaseModel, Field, ConfigDict, model_validator, AnyUrl
 from starlette import status
 
-from src.api.commons.schemas import FilterQuery
+from src.utils.schemas import FilterQuery
 from src.constants import EXTRA_FIELDS
-from src.utils import PydanticModelMeta
 
 
 class ExternalFixture(BaseModel):
@@ -35,11 +34,11 @@ class Fixture(BaseModel):
     model_config = ConfigDict(populate_by_name=True, from_attributes=True)
 
 
-class FixtureUpdate(Fixture, metaclass=PydanticModelMeta):
+class FixtureUpdate(Fixture):
     __exclude_parent_fields__ = EXTRA_FIELDS
 
 
-class FixtureCreate(Fixture, metaclass=PydanticModelMeta):
+class FixtureCreate(Fixture):
     __exclude_parent_fields__ = EXTRA_FIELDS
 
     name: str = Field(..., min_length=1)

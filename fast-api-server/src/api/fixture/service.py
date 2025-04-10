@@ -5,14 +5,16 @@ from fastapi import Depends
 
 from src.utils.contracts import PaginationContract
 from src.utils.dao import IRepository
+from src.utils.services import ExternalServiceConnector
 from src.schemas import Pagination, Id, AcknowledgeMessage, DAOGetAllParams, IdName
 
 from src.api.fixture.schema import (
-    Fixture, FixtureCreate, FixtureUpdate, FixtureProperties, ExternalFixture, FixtureSearchQuery
+    Fixture, FixtureCreate, FixtureUpdate, ExternalFixture, FixtureSearchQuery
 )
+from src.api.external.service import ExternalService
+from src.db.dao.fixture_dao import FixtureDAO
 
 EXTERNAL_TABLE_NAME = "fixture"
-
 
 class FixtureService(ExternalServiceConnector[ExternalFixture, Fixture]):
     def __init__(self, db_session: AsyncSession):

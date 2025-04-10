@@ -1,18 +1,15 @@
-from fastapi import Security, APIRouter
-from fast_api_auth0 import Auth0
-from src.settings import settings
-from src.api import example
+from fastapi import APIRouter
+from src.api import (example, fixture)
 
 api_router = APIRouter()
-auth = Auth0()
-dependencies = []
-
-if not settings.debug:
-    dependencies.append(Security(auth.verify))
 
 api_router.include_router(
     example.router,
     prefix="/examples",
     tags=["example"],
-    dependencies=dependencies,
+)
+api_router.include_router(
+    fixture.router,
+    prefix="/fixtures",
+    tags=["fixture"],
 )
