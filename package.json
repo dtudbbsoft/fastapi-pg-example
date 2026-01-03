@@ -1,0 +1,21 @@
+{
+  "name": "@dtus/fastapi-pg-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "packages/fast-api-modules/*",
+      "fast-api-server"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dtudbbsoft/fastapi-pg-example.git"
+  },
+  "private": true
+}
